@@ -19,7 +19,7 @@ ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
 while True:
-    address = input('Enter location: ')
+    address = 'Georgia State University'
     if len(address) < 1: break
 
     parms = dict()
@@ -27,10 +27,8 @@ while True:
     if api_key is not False: parms['key'] = api_key
     url = serviceurl + urllib.parse.urlencode(parms)
 
-    print('Retrieving', url)
     uh = urllib.request.urlopen(url, context=ctx)
     data = uh.read().decode()
-    print('Retrieved', len(data), 'characters')
 
     try:
         js = json.loads(data)
@@ -42,10 +40,6 @@ while True:
         print(data)
         continue
 
-    print(json.dumps(js, indent=4))
-
-    lat = js['results'][0]['geometry']['location']['lat']
-    lng = js['results'][0]['geometry']['location']['lng']
-    print('lat', lat, 'lng', lng)
-    location = js['results'][0]['formatted_address']
-    print(location)
+    lat = js['results'][0]['place_id']
+    print(lat)
+    break
