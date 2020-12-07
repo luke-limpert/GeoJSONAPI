@@ -19,7 +19,7 @@ ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
 while True:
-    address = 'Georgia State University'
+    address = 'Michigan State University'
     if len(address) < 1: break
 
     parms = dict()
